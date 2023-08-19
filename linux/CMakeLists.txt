@@ -18,7 +18,7 @@ target_include_directories(${PLUGIN_NAME} INTERFACE
 target_link_libraries(${PLUGIN_NAME} PRIVATE flutter)
 target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::GTK)
 
-pkg_check_modules(WEBKIT IMPORTED_TARGET REQUIRED webkit2gtk-4.0)
+pkg_check_modules(WEBKIT IMPORTED_TARGET REQUIRED webkit2gtk-4.1)
 target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::WEBKIT)
 
 # List of absolute paths to libraries that should be bundled with the plugin
