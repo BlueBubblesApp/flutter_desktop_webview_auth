@@ -48,7 +48,7 @@ static void changed(WebKitWebView *view, WebKitLoadEvent event, gpointer user_da
 
   if (strcmp(plugin->method_name, "signIn") == 0)
   {
-    matching = strstr(uri, redirectUrl) != NULL;
+    matching = strstr(uri, redirectUrl) == &uri[0];
   }
   else if (strcmp(plugin->method_name, "recaptchaVerification") == 0)
   {
