@@ -1,6 +1,22 @@
+# 0.0.15
+
+- fix: Google Sign in exiting early, updated OAuth path
+
+# 0.0.14
+
+- fix: Deprecated package tag in AndroidManifest.xml
+
+# 0.0.13
+
+- Chore: Upgrade dependencies
+
+# 0.0.12
+
+- Fix: Add support to AGP 8.0.
+
 # 0.0.11
 
-= Fix: return nil instead of FlutterErrorNotImplemented on iOS
+- Fix: return nil instead of FlutterErrorNotImplemented on iOS
 
 ## 0.0.10
 
