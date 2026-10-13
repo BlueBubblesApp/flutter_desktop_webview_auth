@@ -60,6 +60,9 @@ namespace {
 		string  redirectUrl_ = "";
 		string  methodName_ = "";
 		
+		// Must outlive webViewWindowClass, which points at it for UnregisterClass.
+		std::wstring webViewClassName_;
+
 		WNDCLASS webViewWindowClass = { };
 
 		// Register the token of Navigation event.
@@ -68,8 +71,8 @@ namespace {
 		// The popup windows in which the WebView is loaded.
 		HWND hWndWebView;
 
-		// The current Flutter view.
-		unique_ptr<FlutterView> view_;
+		// The current Flutter view. Owned by the registrar, not this plugin.
+		FlutterView* view_;
 
 		// Pointer to the Flutter MethodChannel.
 		unique_ptr<MethodChannel<EncodableValue>> channel_;
@@ -192,9 +195,9 @@ namespace {
 	// constructor.
 	DesktopWebviewAuthPlugin::DesktopWebviewAuthPlugin(FlutterView* view) : view_(view) {
 		// Convert short to wide string.
-		const auto temp = std::wstring(kWebViewClassName.begin(), kWebViewClassName.end());
+		webViewClassName_ = std::wstring(kWebViewClassName.begin(), kWebViewClassName.end());
 
-		webViewWindowClass.lpszClassName = temp.c_str();
+		webViewWindowClass.lpszClassName = webViewClassName_.c_str();
 		webViewWindowClass.lpfnWndProc = &WinProc;
 
 		channel_ = std::unique_ptr<flutter::MethodChannel<EncodableValue>>();
